@@ -2,9 +2,9 @@
 
 using namespace std;
 
-fstream przedmioty::plik;
+fstream Przedmioty::plik;
 
-przedmioty::przedmioty(string name, float price, float taxRate, int amount)
+Przedmioty::Przedmioty(string name, float price, float taxRate, int amount)
 {
 	nazwa = name;
 	cena = price;
@@ -12,32 +12,35 @@ przedmioty::przedmioty(string name, float price, float taxRate, int amount)
 	ilosc = amount;
 }
 
-void przedmioty::zapisz(vector<przedmioty> lista) {
-	plik.open("przedmioty.txt", ios::out);
-	for (przedmioty q : lista)
+void Przedmioty::zapisz(vector<Przedmioty> lista) {
+	plik.open("Przedmioty.txt", ios::out);
+
+	for (Przedmioty q : lista)
 		plik << q.nazwa << " " << q.cena << " " << q.stawkaVAT << " " << q.ilosc << endl;
+
 	plik.close();
 }
 
-float przedmioty::zwrocCene() {
+float Przedmioty::zwrocCene() {
 	return cena;
 }
 
-int przedmioty::zwrocIlosc() {
+int Przedmioty::zwrocIlosc() {
 	return ilosc;
 }
 
-float przedmioty::zwrocVAT() {
+float Przedmioty::zwrocVAT() {
 	return stawkaVAT;
 }
 
-string przedmioty::zwrocNazwe() {
+string Przedmioty::zwrocNazwe() {
 	return nazwa;
 }
 
-void przedmioty::wczytaj(vector<przedmioty>* lista) {
-	plik.open("przedmioty.txt", ios::in);
+void Przedmioty::wczytaj(vector<Przedmioty>* lista) {
+	plik.open("Przedmioty.txt", ios::in);
 	string t, name, price, taxR, quant;
+
 	while (getline(plik, t)) {
 		stringstream linia;
 		linia << t;
@@ -45,12 +48,13 @@ void przedmioty::wczytaj(vector<przedmioty>* lista) {
 		linia >> price;
 		linia >> taxR;
 		linia >> quant;
-		przedmioty a(name, stof(price), stof(taxR), stoi(quant));
+		Przedmioty a(name, stof(price), stof(taxR), stoi(quant));
 		(*lista).push_back(a);
 	}
+
 	plik.close();
 }
 
-void przedmioty::odejmij(int val) {
+void Przedmioty::odejmij(int val) {
 	ilosc -= val;
 }

@@ -10,10 +10,10 @@
 enum plec { inne, mezczyzna, kobieta };
 
 std::string czytajDoSpacji(std::string);
-int czytajID(std::string);
+int czytajId(std::string);
 
-class klient {
-private:
+class Klient {
+
 	std::string imie;
 	std::string nazwisko;
 	std::string adres;
@@ -21,15 +21,18 @@ private:
 	std::vector<int> listaZamowien;
 	std::string login;
 	std::string haslo;
+
 	static std::fstream plik;
+
 public:
-	klient(std::string, std::string, std::string, plec, std::string, std::string);
+
+	Klient(std::string, std::string, std::string, plec, std::string, std::string);
 	void modyfikuj();
-	static void zapisz(std::vector<klient>);
-	static void wczytaj(std::vector<klient>*);
+	static void zapisz(std::vector<Klient>);
+	static void wczytaj(std::vector<Klient>*);
 	bool logowanie(std::string, std::string);
 	void dodajZam(int ID);
 	void wyswListeZamow();
 };
 
-#endif // KLIENT_H
+#endif

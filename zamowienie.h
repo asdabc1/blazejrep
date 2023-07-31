@@ -8,24 +8,28 @@
 
 enum sposobyPlatnosci { gotowka, karta, raty, blik };
 
-przedmioty czytajPrzedmiot(std::string);
+Przedmioty czytajPrzedmiot(std::string);
 
-class zamowienie {
-private:
+class Zamowienie {
+
 	std::string data;
 	float wartoscCalkowita;
 	sposobyPlatnosci sp;
-	std::vector<przedmioty> tab;
+	std::vector<Przedmioty> tab;
 	int ID;
 	static std::fstream plik;
+
+	void setPaymentMethod();
+
 public:
-	zamowienie(std::string date, sposobyPlatnosci payment, std::vector<przedmioty> list);
-	zamowienie(int ident, std::string date, sposobyPlatnosci payment);
+
+	Zamowienie(std::string date, sposobyPlatnosci payment, std::vector<Przedmioty> list);
+	Zamowienie(int ident, std::string date, sposobyPlatnosci payment);
 	void edytuj();
 	int zwrocID();
 	void dodajPrzedmiot(std::string linia);
-	static void zapisz(std::vector<zamowienie> lista);
-	static void wczytaj(std::vector<zamowienie>* lista);
+	static void zapisz(std::vector<Zamowienie> lista);
+	static void wczytaj(std::vector<Zamowienie>* lista);
 };
 
-#endif // ZAMOWIENIE_H
+#endif
